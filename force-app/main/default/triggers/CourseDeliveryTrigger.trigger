@@ -1,0 +1,14 @@
+trigger CourseDeliveryTrigger on Course_Delivery__c (before insert, after update) {
+
+    // Retrieve the Custom Metadata Type record for this trigger name
+    Trigger_Switch__mdt tsw = Trigger_Switch__mdt.getInstance('Course_Delivery_Trigger');
+
+    // If no Custom Metadata Type record found or if the active
+    // flag is set to true then execute the trigger logic
+    if (tsw == null || tsw.Active_Flag__c == true) {
+        
+        // Invoke the static method of the CourseDeliveryTriggerHandler class
+        CourseDeliveryTriggerHandler.preventInvalidCourseDeliveries(Trigger.new, Trigger.oldMap);   
+        
+    }
+}
