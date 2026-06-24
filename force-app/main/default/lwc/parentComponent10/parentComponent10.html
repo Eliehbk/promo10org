@@ -1,0 +1,10 @@
+<template>
+    <lightning-card title="parent">
+        <lightning-input
+        label="enter greeting"
+        onchange={handleInput}
+        value={message}>
+    </lightning-input>
+        <c-child-component10 message={message}></c-child-component10>
+    </lightning-card>
+</template>
