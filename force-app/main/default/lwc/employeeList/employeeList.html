@@ -1,0 +1,26 @@
+<template>
+    <div>
+        <p>Name</p>
+        <input type="text">
+        
+        <p>Age</p>
+        <input type="number">
+        
+        <p>Email</p>
+        <input type="email">
+        
+        <button onclick={addEmployee}>Add Employee</button>
+    </div>
+
+    <!-- Table stays exactly the same -->
+    <table border="1" style="margin-top: 20px;">
+        <template for:each={employees} for:item="emp">
+            <tr key={emp.index}>
+                <td>{emp.name}</td>
+                <td>{emp.age}</td>
+                <td>{emp.email}</td>
+                <td> <lightning-button value={emp.index} variant="destructive" label="Delete" title="Destructive action" onclick= {deleteEmployee} class="slds-m-left_x-small"></lightning-button></td>
+            </tr>
+        </template>
+    </table>
+</template>
