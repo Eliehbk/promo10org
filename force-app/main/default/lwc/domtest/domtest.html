@@ -1,0 +1,10 @@
+<template>
+    <div>
+<p>counter {counter}</p>
+<lightning-button label="increase counter" onclick={handleIncrement}></lightning-button>
+<lightning-button label="Show/Hide message" onclick={toggleMessage}></lightning-button>
+<template lwc:if={showMessage}>
+<p>hello Lwc</p>
+</template>
+    </div>
+</template>
