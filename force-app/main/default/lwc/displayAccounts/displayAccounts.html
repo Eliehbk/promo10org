@@ -1,0 +1,33 @@
+<template>
+    <lightning-card title="Dynamic Account Fetcher" icon-name="standard:account">
+        <div class="slds-var-m-around_medium">
+            <lightning-input 
+                type="number" 
+                label="Number of Accounts to Display" 
+                value={accountLimit} 
+                onchange={handleInputChange}
+                min="0">
+            </lightning-input>
+        </div>
+
+        <div class="slds-var-m-around_medium">
+            <!-- Access the .data property directly in the template -->
+            <template if:true={wiredAccountsResult.data}>
+                <ul class="slds-has-dividers_bottom-space">
+                    <template for:each={wiredAccountsResult.data} for:item="acc">
+                        <li key={acc.Id} class="slds-item">
+                            <strong>{acc.Name}</strong> - {acc.Industry}
+                        </li>
+                    </template>
+                </ul>
+            </template>
+
+            <!-- Access the .error property directly in the template -->
+            <template if:true={wiredAccountsResult.error}>
+                <div class="slds-text-color_error">
+                    Error loading accounts.
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>
