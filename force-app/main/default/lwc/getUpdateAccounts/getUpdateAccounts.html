@@ -1,0 +1,23 @@
+<template>
+    <div>
+<button data-filter="Recent" onclick={handleLoad}>recent</button>
+<button data-filter="hot" onclick={handleLoad}>hot</button>
+<button data-filter="noPhone" onclick={handleLoad}>no phone</button>
+<ul>
+<template for:each={accounts} for:item="acc">
+    <li  key={acc.Id}>
+        <button data-id={acc.Id} onclick={handleSelect} >{acc.Name}</button>
+    </li>
+</template>
+<template if:true={selectedAccount}>
+<div>
+    <h3><b>Selected:</b> {selectedAccount.Name}</h3>
+    <p><b>Current Desc:</b> {selectedAccount.Description}</p>
+    <input type="text" value={newDesc} oninput={handleInputChange}>
+    <button onclick={handleUpdate}> update description</button>
+</div>
+
+</template>
+</ul>
+    </div>
+</template>
