@@ -6,7 +6,8 @@
 <ul>
 <template for:each={accounts} for:item="acc">
     <li  key={acc.Id}>
-        <button data-id={acc.Id} onclick={handleSelect} >{acc.Name}</button>
+        <button data-id={acc.Id} onclick={handleNavigateToRecord} >{acc.Name}</button> 
+        <button data-id={acc.Id} onclick={handleSelect} >Details</button> 
     </li>
 </template>
 <template if:true={selectedAccount}>
