@@ -1,0 +1,20 @@
+<template>
+    <lightning-card title="Related Opportunities" icon-name="standard:opportunity">
+        <div class="slds-var-m-around_medium slds-is-relative">
+            <!-- Loop over dynamically found opportunity data -->
+            <template if:true={opportunities.length}>
+                <template for:each={opportunities} for:item="opp">
+                    <div key={opp.Id} class="slds-box slds-box_x-small slds-var-m-bottom_small">
+                        <p><strong>Name:</strong> {opp.Name}</p>
+                        <p><strong>Stage:</strong> {opp.StageName} | <strong>Amount:</strong> {opp.Amount}</p>
+                    </div>
+                </template>
+            </template>
+
+            <!-- Blank state logic handles zero selections or zero matches -->
+            <template if:false={opportunities.length}>
+                <p class="slds-text-color_weak">Select an account from the selector component to look up opportunities.</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>

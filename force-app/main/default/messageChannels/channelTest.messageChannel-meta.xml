@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningMessageChannel xmlns="http://sforce.com">
+    <masterLabel>Account Channel</masterLabel>
+    <description>Passes selected Account ID to sibling components.</description>
+    <isExposed>true</isExposed>
+    <lightningMessageFields>
+        <fieldName>accountId</fieldName>
+        <description>The ID of the selected Account</description>
+    </lightningMessageFields>
+</LightningMessageChannel>

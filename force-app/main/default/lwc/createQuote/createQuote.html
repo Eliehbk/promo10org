@@ -1,0 +1,63 @@
+<template>
+    <lightning-card title="Create Quote" icon-name="standard:quote">
+        <div class="slds-var-p-around_medium">
+            
+            <template lwc:if={isStageNew}>
+                <lightning-record-edit-form
+                    object-api-name="Quote" 
+                    onsubmit={handleFormSubmit}
+                    onsuccess={handleSuccess}> <!-- Removed stray '>' -->
+                    
+                    <lightning-messages></lightning-messages>
+                    <lightning-input-field field-name={quoteNameField} required></lightning-input-field>
+
+                    <template lwc:if={isOfficeOrRetail}>
+                        <lightning-input-field field-name={startDateField} required></lightning-input-field>
+                        <lightning-input-field field-name={endDateField} required></lightning-input-field>
+                        <lightning-input-field field-name={paymentTermsField} required></lightning-input-field>
+                        <lightning-input-field field-name={gracePeriodField} required></lightning-input-field>
+                    </template>
+
+                    <template lwc:if={isRetail}>
+                        <lightning-input-field field-name={retailCatField} required></lightning-input-field>
+                    </template>
+
+                    <template lwc:if={isLand}>
+                        <lightning-input-field field-name={startDateField} required></lightning-input-field>
+                        <!-- Added onchange event handler here -->
+                        <lightning-input-field field-name={durationField} onchange={handleDurationChange} required></lightning-input-field>
+                        <lightning-input-field field-name={rentReviewField} required></lightning-input-field>
+                        
+                        <div class="slds-var-m-vertical_small slds-text-color_weak">
+                            Note: Payment terms for Land are automatically set to 4.
+                        </div>
+
+                        <template lwc:if={requiresAttachment}>
+                            <div class="slds-box slds-var-m-vertical_small">
+                                <p class="slds-text-color_error slds-var-m-bottom_x-small">* Attach file</p>
+                                <lightning-file-upload
+                                    label="Attach Manager Approval"
+                                    name="fileUploader"
+                                    accept={acceptedFormats}
+                                    record-id={recordId}
+                                    required>
+                                </lightning-file-upload>
+                            </div>
+                        </template>
+                    </template>
+
+                    <div class="slds-var-m-top_medium">
+                        <lightning-button type="submit" variant="brand" label="Create Quote"></lightning-button>
+                    </div>
+                </lightning-record-edit-form>
+            </template>
+
+            <template lwc:else>
+                <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_warning" role="alert">
+                    <h2>Quotes can only be created when the Opportunity Stage is 'New'.</h2>
+                </div>
+            </template>
+
+        </div>
+    </lightning-card>
+</template>
